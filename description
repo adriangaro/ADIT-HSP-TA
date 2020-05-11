@@ -1,0 +1,3 @@
+This patch adds support for Guilli's Ship Components(GSP) mod to the Ancient Dreadnought from the Ancient Dreadnought and Improved Titan(ADIT) mode. This includes thrusters, energy cores components and crew slot and components.
+
+This patch also adds support for Technology Ascendant(TA) mod, specifically the living ship sections are now reflecting the number of aux slots as in GSP and added equivalent sections for the dreadnought and titan from ADIT.
