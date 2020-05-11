@@ -1,0 +1,130 @@
+### Dreadnought A
+dreadnought_a = {
+	graphical_culture = yes			# YES and things wich dependent on GC will work;
+	entity = "dreadnought_a_entity"
+	formation_priority = @titan_formation_priority
+	max_speed = 80
+	acceleration = 0.15
+	rotation_speed = 0.10
+	collision_radius = @titan_collision_radius
+	max_hitpoints = 8000
+	modifier = {
+		ship_evasion_add = 2
+		ship_armor_add = 5000
+		ship_piracy_suppression_add = 3
+	}
+	size_multiplier = 16
+	fleet_slot_size = 8
+	section_slots = { 
+		"fore" = { locator = "part1" } 
+		"mid" = { locator = "part2" } 
+		"stern" = { locator = "part3" } 
+	}
+	num_target_locators = 0
+	is_space_station = no
+	icon_frame = 6
+	base_buildtime = 1200
+	can_have_federation_design = yes
+	enable_default_design = yes
+	is_designable = yes
+	
+	default_behavior = artillery
+	
+	prerequisites = { "tech_dreadnought_a" }
+	
+	combat_disengage_chance = 1.25
+	
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components" 
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "c_ship_crew"
+	required_component_set = "dreadnought_a_core"
+	
+	potential_construction = {
+		OR = {
+			is_scope_type = starbase
+			AND = {
+				is_scope_type = megastructure
+				OR = {
+					is_megastructure_type = mega_shipyard_3
+					is_megastructure_type = mega_shipyard_restored
+				}
+			}
+		}
+	}
+	
+	possible_construction = {
+		custom_tooltip = {
+			fail_text = starbase_citadel_trigger
+			OR = {
+				AND = {
+					is_scope_type = megastructure
+					OR = {
+						is_megastructure_type = mega_shipyard_3
+						is_megastructure_type = mega_shipyard_restored
+					}
+				}
+				AND = {
+					is_scope_type = starbase
+					has_starbase_size >= starbase_citadel
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = starbase_titan_yards_trigger
+			OR = {
+				AND = {
+					is_scope_type = megastructure
+					OR = {
+						is_megastructure_type = mega_shipyard_3
+						is_megastructure_type = mega_shipyard_restored
+					}
+				}
+				AND = {
+					is_scope_type = starbase
+					if = {
+						limit = { host_has_dlc = "Apocalypse" }
+						has_starbase_building =	titan_yards
+					}
+					else = {
+						has_starbase_building = dreadnought_a_yards
+					}
+				}
+			}
+		}
+	}
+	
+#	possible_starbase = {
+#		has_starbase_size >= starbase_citadel
+#		if = {
+#			limit = { host_has_dlc = "Apocalypse" }
+#			has_starbase_building =	titan_yards
+#		}
+#		else = {
+#			has_starbase_building = dreadnought_a_yards
+#		}
+#		
+#	}			### Old code actual for pre 2.6.0 update;
+	
+	empire_limit = {
+		base = 1
+		max = 80
+		naval_cap_div = 200
+	}
+	
+	resources = {
+		category = ships
+		upkeep = {
+			energy = 4.8
+			alloys = 1.6
+		}
+	}
+	
+	min_upgrade_cost = {
+		alloys = 16
+	}
+}
